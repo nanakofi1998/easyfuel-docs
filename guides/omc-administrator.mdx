@@ -1,0 +1,144 @@
+---
+title: "OMC administrator"
+---
+
+The OMC workspace manages the station network belonging to your OMC. Configure active master data before station staff begin operations. Review approvals with the supporting evidence rather than acting on the KPI value alone.
+
+### 6.1 Recommended setup order
+
+1. Create active fuel products.
+2. Create and activate the OMC's accepted payment methods.
+3. Create expense categories and define whether approval is required.
+4. Create station managers, pump attendants and cashiers as needed.
+5. Complete station setup: station, tanks, pumps, staff, payments and products.
+6. Set product prices with an appropriate effective date.
+7. Ask the station manager to create shift templates and configure their EOD PIN.
+8. Ask the system administrator to verify the OMC's People's Pay integration before MoMo collection starts.
+
+### 6.2 Products and payment methods
+
+For products, open Master Data Setup > Products and select Create New Fuel Type.
+
+1. Enter product name and code, select category/unit and set the minimum stock alert.
+2. Choose its active/inactive state and save.
+3. Confirm the record in Fuel Types Management. Use search, filters, pagination and the view/edit/deactivate actions as needed.
+
+Fuel pricing is maintained in Price (Px) Management, not in product creation. Codes are used widely in operational reports; choose recognisable codes and avoid renaming an item to disguise a different product.
+
+For payments, open Payment Method Setup, enter a method name and code, set the status toggle and save. These are configurable OMC records. Stations select active methods from this list. Where the implementation exposes a system processing type/provider mapping, use the appropriate supported mapping; a newly invented label does not create a new external payment processor.
+
+### 6.3 Expense categories
+
+Open Expense Categories and use the creation action. Enter the category fields, choose the allowed groups, approval requirement and status, then save. A category can belong to multiple configured groups. Managers select active categories from their OMC rather than typing an unrelated category name.
+
+Categories requiring review produce pending expenses. Categories configured not to require approval can produce automatically approved records with the explanation that approval is not required. Configure this policy deliberately; it is different from permitting a maker to approve their own review-required expense.
+
+### 6.4 Complete the station wizard
+
+Open Stations and select Create New Station. The six steps are saved progressively. Earlier steps are not freely revisited through the wizard. If setup is interrupted, use Continue Setup in that station's action menu to resume the saved step rather than creating a duplicate station.
+
+1. **Station.** Enter identity, ownership, location, address, permit/licence and operating fields. Select country and currency using the searchable selects. Set cut-off time, expense limit, variance tolerance and Require EOD Submission. Set tank-reading and temperature/calibration policy carefully. Save and continue.
+2. **Tanks.** Use Add Tank for each tank. Select an active OMC product; enter code, name, type, capacity, initial stock, minimum threshold and reorder level. Remove unwanted draft tanks with the delete icon. Submit all completed tank forms using Save and Continue.
+3. **Pumps.** Add each pump with its code/name/type and manufacturer/model where applicable. Add one or more nozzles inside a pump. Each nozzle needs a code and a connection to a tank at this station, plus nozzle/meter type. Remove unwanted draft pumps/nozzles with their delete icons. Save the batch and continue.
+4. **Staff.** Choose a supported role to populate active eligible users. Select users for the station. The global selected-user row shows selections across roles; use its cross to remove an incorrect selection. Already-assigned station staff are not available for a conflicting station assignment. Save and continue.
+5. **Payments.** Select the active OMC payment-method code pills accepted at this station. Save and continue.
+6. **Products.** Select active product pills allowed at this station. Complete setup and return to Stations.
+
+The Brand/OMC field is controlled by your tenant. You do not supply another tenant's identity. Do not activate a station until its setup is complete and mappings are checked.
+
+Temperature choices such as Record Only and Apply Correction are not interchangeable. Some calibration/device choices are reserved for later integration. Selecting a future/device option does not connect a tank gauge; confirm support before relying on automatic conversion.
+
+### 6.5 Maintain stations tanks pumps and staff
+
+Open a station's action menu to view details, edit station metadata, manage tanks/pumps/staff/payment methods/products, change status or continue incomplete setup. The setup progress bar helps identify unfinished records.
+
+In Tanks Setup, select the station before creating a tank. Enter the product, capacity, current stock and thresholds. Editing stock metadata should not be used to conceal a physical shortage; use the proper reading/correction workflow and supporting reason.
+
+In Nozzle/Pump Configuration, select the station first. Add or edit its pumps and map nozzles to its active tanks. The frontend displays active nozzles. Removing a nozzle in Edit Pump is persisted when Save Pump succeeds. Removed nozzles are retained for history and excluded from current configuration; a physical historical transaction is not deleted.
+
+In User Management > Station Assignment, select role and station, choose eligible unassigned users and assign the selected users. Verify the table afterwards. Use the unassign action with a reason for a genuine reassignment. A staff member already assigned to another station must not be selected for a second conflicting station assignment.
+
+### 6.6 Users and access control
+
+Open Users to create a tenant user. Select an allowed role, complete the required identity/contact fields, enter password and confirm password, then create once. Email is optional only for a pump attendant. Reset Form clears unsaved fields. The server attaches the OMC from your session; you cannot create a system administrator from the OMC portal.
+
+The paginated user register supports search and filters. Review View Profile, Edit, Deactivate and Send Password Reset Link where available. Pump attendant rows can offer Resend Attendant ID for queued SMS delivery when the original message was not received. Use status changes with an operational reason. Editing identity data is not the same as creating a new user.
+
+Open Access Control for permission definitions and assignments. Use Create Permission, select a role, choose permitted modules and actions, then save. The form supports multiple module/action pills. Assign permissions or restrictions through this page's supported controls. Default role access applies until modified by an authorised override. The general Users row menu does not provide the permission assignment entry in the current UI.
+
+Some legacy role-change displays remain unintegrated. Confirm the actual saved role before communicating new access to the user. Do not grant self-approval casually.
+
+### 6.7 Set or schedule a price
+
+Open Sales > Price (Px) Management.
+
+1. Use Price Setup for a product with no initial configuration, or Update Price for an existing product.
+2. Select the product, enter the price per litre and choose the effective date/time. Use Set Now only when the new price should apply immediately.
+3. Enter the price-change reason and save.
+4. Confirm the active price or inspect View Scheduled Prices for future changes.
+5. Edit or cancel a pending scheduled change if the plan changes before activation.
+6. Use Current Price Configuration and Price Adjustment History to review the effective state and audit trail.
+
+Prices support up to three decimal places. A new price applies to new transactions using their effective timestamp. Completed sales retain their transaction price snapshot. Do not expect historical revenue to be recalculated at today's price.
+
+### 6.8 Approve requisitions and dispatch stock
+
+Open Approvals and Verifications > Requisition Approvals.
+
+1. Apply station, status, product or date filters as needed.
+2. Open Approve for a pending requisition and review its station, receiving tank/product, requested quantity, ETA and remarks.
+3. Enter the approved quantity. If it differs from the requested quantity, enter the increase/decrease reason requested by the form.
+4. Review the confirmation and approve once, or use Decline with a reason.
+5. For an eligible approved requisition, choose Dispatch.
+6. Check the read-only request/product/requested/approved quantities. Enter the actual quantity to dispatch, waybill number, dispatch date, driver, vehicle, dispatched-by information and notes.
+7. Submit and confirm the dispatch record and requisition state.
+
+Bulk approve/decline actions apply to selected eligible records only. Review each item before selecting all pending. Approval counts should describe approval events even after stock is dispatched. A dispatched quantity is not automatically a received quantity; the station manager records the actual receipt.
+
+### 6.9 Review EOD submissions and variances
+
+Open Pending Submissions. Search/filter the inbox and open a record with View. Review the business date, station, submitter, sales/collection totals, risk, variance and attached evidence. Use the eligible Approve, Reject or Flag for Investigation action. Supply a reason for rejection or investigation and read the confirmation before acting.
+
+Variance Review and Stock Variance provide related views of discrepancy records. Inspect expected and physical figures, litres, financial impact, source, risk and prior decisions. Attach evidence where the review form allows it. Do not approve solely because a variance lies within tolerance; tolerance is an investigation signal, not a replacement for a checker.
+
+After a final decision, use the supported reopen/review workflow with a reason if a mistake is discovered. Do not repeatedly approve the same record or create a second contradictory decision from the other variance page. A maker normally cannot approve their own review-required submission without an explicitly authorised exception.
+
+### 6.10 Sales stock and windfall analytics
+
+Use Daily Sales Sheet for product sales across the OMC network. Apply the desired filters. Cards can show zero-valued products when there are no matching sales. Open a card to inspect station breakdowns. Recent transaction records show their payment status; a zero total is different from a failed data fetch.
+
+Use Sales and Cash Summary to compare station revenue and actual collections, review banking and expense information, and export a filtered report. Use Sales Analysis for date/product/station drill-down, daily/weekly/monthly views, trends and detailed sales records. The historical price shown for a sale should be assessed against its transaction date, not today's pump price.
+
+Use Stock Analysis for opening/closing stock, receipts, sales, turnover, cover and movement trends. Read the period and station scope before comparing stations. Use Stock Variance for measured stock discrepancies rather than treating the operational tank balance as a fresh physical measurement.
+
+Windfall Analysis examines the inventory price-change effect. Use Analytics for gains/losses by station and product, and Investigations for the kanban workflow. Open a case to inspect its cause/evidence and move it through an eligible status. Moves can be throttled; wait after an update and verify it saved. A windfall estimate is not automatically realised profit or a stock adjustment.
+
+### 6.11 Accounting and finance
+
+Use Cash and Collections Reconciliation to compare expected and reported actual collections by station/date. Read the default period label; the normal recent window is seven days unless filters change it. Open KPI drawers for detail, then inspect the register and exports.
+
+Use Banking (Deposits) for deposit trends, method composition, station totals and slip records. Open details and the relevant review action to inspect the uploaded slip, amount, method, date and station. Banking Variance compares expected and actual banking figures; review the source records before assigning a cause or decision.
+
+Use Station Expenses for expenses submitted by stations under your OMC. Review category, amount, taken-from-sales value, submitter, receipt and status before approving, rejecting or flagging an eligible item. Expenses marked as not requiring approval follow their category policy.
+
+Use Director/Special Expenses to record authorised OMC/director expenses. The requester is the logged-in user. Choose an appropriate category and funding/payment details, attach the receipt and supply notes. Daily Expense Sheet consolidates station expenses for a chosen day or range. KPIs and Financial Exports summarises financial components and offers scoped exports; validate the period and contributing records before distribution.
+
+Expected gross collections and expense deductions should be read as separate lines. Do not deduct the same expense twice or count a deposited cash amount as both cash still in the drawer and money already banked.
+
+### 6.12 Cards and coupons
+
+Open Generate Card. Create an institution where required, then enter card owner, institution, limit and limit type, Currency or Litres. Generate the card and verify the institution, owner, status and limit. A new card starts at zero balance. Use Top Up to fund it without exceeding its limit. Choose its available design shade, preview it, export the coloured PDF or share by email using the receiver's address. Verify the QR appears on the generated document.
+
+Card QR verification confirms authenticity/status; it does not perform a sale. The attendant must validate and process the card through the mobile payment workflow. Suspension/inactivity and attempt limits can stop further use.
+
+Open Generate Coupons. Choose a denomination of GHS 50, 100, 200, 500 or 1,000; choose the offered digital/hardcopy mode and batch quantity. A batch is limited to 100 coupons. Read daily/monthly/yearly allowance and remaining usage before generating. Normal daily allowance is 500 per generator unless an authorised configuration changes it. A limit change requires a reason through supported administrative controls.
+
+Use batch details to inspect coupon codes and status. Export eligible hardcopy coupons for printing; the layout includes separation guides. Printed graphics do not constitute a physical hologram or guarantee counterfeit-proof paper. Use digital secure links when sharing individual downloads: each coupon gets its own expiring one-use download link. Email/share generation is queued; a success message can mean the request was accepted rather than already delivered.
+
+Coupons redeem once. QR verification alone does not redeem one. A voided/expired/redeemed coupon must not be treated as available to sell or exported as an active usable coupon. Ask an administrator to investigate an unexpected status instead of generating duplicate replacements casually.
+
+### 6.13 Reports and unavailable menus
+
+Use Sales and Variance Analysis to inspect variance composition and its detailed source register. Use Expense and Credit Reports for expense classification, cash taken from sales and credit sales. Use Monthly Movement Reports for product opening/closing stock, receipts, sales and loss/gain over the selected period. Apply filters before exporting CSV/PDF.
+
+Payment Channel Setup, Export Data, Station Daily Pack and the OMC Audit and System Logs menu are currently commented out. They are not standard available menu instructions in this edition. Payment Method Setup remains available and is a different feature.

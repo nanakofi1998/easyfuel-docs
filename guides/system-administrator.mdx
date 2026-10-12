@@ -1,0 +1,80 @@
+---
+title: "System administrator"
+---
+
+Use this workspace for platform and tenant administration. Treat cross-OMC information as privileged data. The main operational modules verified in the source include OMC tenants, system users, public onboarding, transaction accounts, People's Pay integration and error logs. Other platform monitoring/control screens can still contain seeded demonstration records.
+
+### 5.1 Create and maintain an OMC
+
+Open Tenant and Portal Control > OMC Tenants.
+
+1. Select Create OMC.
+2. Enter the organisation name and the contact, business, website and subscription fields shown in the form.
+3. Upload the organisation's logo. The current tenant-logo validation permits JPEG/JPG, PNG or SVG, up to 1 MB. This differs from the retail-item image rules.
+4. Review the data and save once.
+5. Confirm the new OMC appears in the register. Open its row details to inspect its information.
+6. Use the relevant row action to edit, change its state or archive it when authorised. Read the confirmation before an archive action.
+
+The server generates tenant identifiers. Do not manually invent or reuse OMC security identifiers. An OMC must exist before its admin account can be attached to it.
+
+### 5.2 Create a tenant user
+
+Open Tenant and Portal Control > Users and select Create User.
+
+1. Select the intended role.
+2. For an OMC user, select the correct OMC. The user must belong to that OMC.
+3. Enter first name, last name, Ghana Card number, phone, date of birth and the other required identity fields.
+4. Enter email for roles that require it. Pump attendant email can be optional.
+5. Set the initial/temporary password or invitation fields shown, and the first-login reset option as appropriate.
+6. Create the user, then confirm their role, OMC and status in the register.
+
+Ghana Card format is GHA-123456789-1, with all 15 characters present. The form can insert separators while typing; the prefix alone is not a valid number. Active pump attendants receive a generated six-digit attendant ID through queued SMS where SMS delivery is configured. Keep that ID private.
+
+Open row details to review identity information or use the provided edit/status action. Do not assume every visible role or permission control is connected simply because it appears in a dropdown. OMC user-management procedures are described in section 6.
+
+### 5.3 Public onboarding and demo requests
+
+Open Public Onboarding to review applications and demo enquiries from the external signup flow.
+
+1. Select the appropriate applications or demo-requests view.
+2. Search/filter to find a company or enquiry.
+3. Open details and inspect contact information, uploaded logo, verification state and supporting information.
+4. Assign a reviewer or request further information using the available action.
+5. Approve or reject an eligible application with a clear decision reason where requested.
+6. For demo enquiries, update the contact/scheduling state and record follow-up information in the supplied form.
+
+An external application is not automatically equivalent to a fully operational tenant. Confirm conversion and account setup before providing production access.
+
+### 5.4 Configure People's Pay for an OMC
+
+Open Accounts and Transactions > People's Pay Integration. Obtain the correct merchant ID and API key through the authorised provider channel.
+
+1. Select the configuration creation action.
+2. Select the OMC and environment, Sandbox or Production.
+3. Enter the merchant ID and API key. Enter a meaningful configuration reason; the current form requires at least 10 characters.
+4. Save the configuration.
+5. Use the row menu's Test Connection action and confirm the verified active state before the OMC starts MoMo collections.
+6. To switch environments, choose Change Environment / Credentials. Use the environment-only option when reusing the existing credentials, then test the target environment.
+7. Use View Configuration and View Audit Trail to review configuration history. Suspend only when authorised; suspension blocks new collections.
+
+The current implementation requires connection verification. Do not assume a saved configuration is already active. Each OMC's credential version is retained for its existing transactions. Credentials must never be pasted into user messages, ordinary support notes or public exports.
+
+### 5.5 Inspect transaction accounts
+
+Open Transaction Accounts. The default period is Today.
+
+1. Select Today, This Week, This Month or All Time, and the available tenant/status filters.
+2. Inspect successful value, failed/pending records and the OMC breakdown.
+3. Open the OMC drawer to inspect its account composition.
+4. Open an individual transaction to review its reference, provider information, status and supporting details.
+5. Export the scoped register when needed for an authorised review.
+
+A pending provider transaction is not successful income. Use the recorded payment status and successful-value totals rather than summing every initiated request.
+
+### 5.6 Inspect errors and platform screens
+
+Open Audit and Compliance > Error Logs. Search/filter the available entries, expand a row and review its structured details. Where available, Run Provider Check tests configured People's Pay connectivity and records diagnostics. A successful connectivity check does not prove an unrelated payment completed.
+
+Record the occurrence time, affected user/station, transaction reference and relevant error message when escalating. Exclude passwords, OTPs, API keys and access tokens.
+
+Platform Operations, Security Center, QA and Release Control, Data and Backups, and several Audit and Compliance screens currently include demonstration records or controls in the shared operational UI. Use them for interface review only until your deployment confirms a connected service. In particular, a UI backup/restore action is not proof that a recoverable backup exists. System Settings and profile data have dedicated forms; only treat a setting as saved after the server confirms the change.

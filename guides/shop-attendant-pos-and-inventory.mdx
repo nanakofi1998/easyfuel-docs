@@ -1,0 +1,65 @@
+---
+title: "Shop attendant POS and inventory"
+---
+
+**Prototype.** The retail workspace uses in-memory data. Adding items, creating categories and completing a sale change local state while the portal remains mounted. Reloading, signing out or leaving/remounting the workspace can reset it. This is not yet a persistent retail inventory or payment ledger. Fuel transactions and card/coupon APIs are separate and must not be assumed to fund a retail checkout.
+
+The shop attendant has no sidebar. Header tabs are Sell, Held Sales, Inventory, Sales History, Cash Drawer and My Shifts. The header shows shop/register identity and an account menu. Register Open is currently demonstration state; its pulsing indicator does not confirm hardware or a real open register session.
+
+### 12.1 Review items before a sale
+
+Open Sell. Wait for the skeleton to finish; item images are loaded before the grid is revealed, with a fallback for missing/failed images. Search by item name, SKU or barcode, or choose a category pill.
+
+Each tile has a centered product image, small SKU/item-code lines, name, available quantity and price. Long identifiers can be viewed by hovering or opening the preview. The top-right eye button is subdued until hover/focus. Select it to open Item Details without adding the item to the basket. Review image, SKU, code, barcode, category, price, stock, reserved units and status. Use Close/Escape to dismiss or Add to Sale to add an eligible item.
+
+Items without uploaded photographs show No image. This is not a category icon or a substitute product photograph. Check identity by name/SKU/barcode when an image is missing.
+
+### 12.2 Add an inventory item and category
+
+Open Inventory and select Add Item.
+
+1. Choose Upload Image and select JPG/JPEG, PNG or WebP up to 2 MB. Inspect the preview. Replace Image or the remove icon changes the unsaved photo.
+2. Enter Item Name and Item Code.
+3. Choose Category. If necessary, select the small Create Category control next to its label, enter a new category name and Create. The category is selected automatically.
+4. Enter optional subcategory, unique SKU and sales price in GHS.
+5. Enter or scan the barcode. Keep the scanned value as the identifier; do not discard leading zeros.
+6. Enter Opening Quantity and Reorder Level as whole numbers of zero or more.
+7. Select Add Item and confirm the item appears in Inventory and Sell.
+
+Duplicate item codes, SKUs and barcodes are rejected in the prototype form. Categories are records, not a fixed backend enum; the UI prototype carries OMC and station scope. Backend tenant/station enforcement and upload storage are still pending integration. Category and item changes do not survive a full reload.
+
+The current form creates a new master item with its opening quantity. It is not a stock receipt/restock form for an existing item. Do not create duplicate item records to replenish an existing SKU; a persistent stock-receiving workflow is part of the planned backend work. CSV bulk item import is also not currently available in this shop UI.
+
+### 12.3 Barcode scanning
+
+The current barcode input supports a USB/Bluetooth scanner operating as a keyboard. Camera-based scanning is not implemented.
+
+When creating an item, select Scan Barcode to focus the barcode field, then scan. A scanner normally types the code and sends Enter. The form captures the code without prematurely submitting the entire item. You can type the barcode manually if a reader is unavailable.
+
+At Sell, focus Scan Barcode and scan an item. An exact matching barcode or supported SKU adds one unit and clears the scan field. An unknown code shows Item Not Found. Verify the barcode on the inventory item rather than repeatedly scanning a different label. Search by name if the barcode cannot be read.
+
+### 12.4 Build a basket and complete a demonstration sale
+
+1. Select an item tile to add one unit. Repeated clicks increase quantity; a double-click produces its normal two clicks, not a separate third addition.
+2. Use plus/minus beside a basket line to change quantity. The cross removes the line; Clear Sale removes the basket.
+3. Check each price, quantity, subtotal and total. Displayed amounts use GHS with two decimal places.
+4. Select Pay to open Complete Sale.
+5. Choose Cash, Mobile Money, POS or Fuel Card from the prototype choices.
+6. For Cash, enter cash received. The form shows change and rejects a received amount below the total.
+7. Select Complete Sale. The in-memory available stock is checked, quantity is deducted locally and the basket clears.
+
+Available quantity equals on-hand units minus reserved units. Out-of-stock items cannot be added. The displayed discount is currently zero; no discount-entry workflow is connected. Non-cash choices do not initiate a real People's Pay/card/terminal payment. A success toast in this prototype is not a bank/provider settlement, persistent sale record or tax receipt.
+
+### 12.5 Held sales and sales history
+
+Hold clears the current basket and increases a local held count. The Held Sales tab shows separate sample baskets. Its Resume action navigates to Sell but does not restore a newly held basket's actual lines; Void removes a sample locally. Therefore, do not rely on Hold/Resume for preserving a real customer's order yet.
+
+Sales History shows demonstration records, not a persistent history of the sales just completed in Sell. Search by the offered reference/payment/status fields to review the layout. Print Shift Summary and receipt print buttons are not connected receipt printing in this prototype.
+
+### 12.6 Cash drawer and retail shifts
+
+Cash Drawer demonstrates opening cash, cash sales, pay-in/out and expected cash. Use Pay In / Out to practise entering movement type, amount and reason. Use Close Register to practise counting actual cash and entering handover notes. Current confirmation messages do not update a persistent drawer ledger, close a real session, or reconcile the header's Register Open state.
+
+Open Drawer currently shows feedback; it does not actuate a printer-connected cash drawer. Full-screen and several print controls also remain unconnected. My Shifts displays sample assigned sessions, values and time remaining rather than a live retail shift scheduler.
+
+For the future live workflow, verify starting float at opening, record each manual pay-in/out with a reason, count cash at closing and explain any difference. Do not sign off a real retail session using prototype totals.

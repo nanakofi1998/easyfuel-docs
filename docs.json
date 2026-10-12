@@ -1,0 +1,46 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Easy Fuel",
+  "description": "User manual for Easy Fuel station operations and shop POS inventory.",
+  "colors": {
+    "primary": "#E27225",
+    "light": "#E27225",
+    "dark": "#BA5316"
+  },
+  "navigation": {
+    "groups": [
+      {
+        "group": "Getting started",
+        "pages": [
+          "guides/how-to-use-this-manual",
+          "guides/roles-and-workspaces",
+          "guides/sign-in-and-account-security",
+          "guides/common-page-controls"
+        ]
+      },
+      {
+        "group": "Roles and workflows",
+        "pages": [
+          "guides/system-administrator",
+          "guides/omc-administrator",
+          "guides/station-manager",
+          "guides/pump-attendant-mobile-workflow",
+          "guides/station-supervisor",
+          "guides/omc-operations-administrator",
+          "guides/audit-risk-and-compliance",
+          "guides/shop-attendant-pos-and-inventory",
+          "guides/cashier-and-additional-role-accounts"
+        ]
+      },
+      {
+        "group": "Reference",
+        "pages": [
+          "guides/reading-financial-and-stock-figures",
+          "guides/troubleshooting",
+          "guides/operating-checklists-and-glossary"
+        ]
+      }
+    ]
+  }
+}

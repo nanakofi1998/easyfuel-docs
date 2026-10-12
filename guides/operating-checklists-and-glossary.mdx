@@ -1,0 +1,56 @@
+---
+title: "Operating checklists and glossary"
+---
+
+### 16.1 Station manager daily checklist
+
+1. Confirm station assignment and the day's active templates, staff and usable pumps/nozzles.
+2. Record opening tank/pump baselines and any required physical checks.
+3. Track receipts and delivery evidence without double-counting stock.
+4. Review pending/failed payments using their original references.
+5. Record expenses and deposit slips with evidence.
+6. Record closing readings and investigate differences with supporting notes.
+7. Count actual collections and save the day's reconciliation.
+8. Refresh EOD, complete manual checks and submit with the EOD PIN.
+
+### 16.2 OMC reviewer checklist
+
+1. Inspect pending requisitions, approve/decline with reasons and dispatch eligible stock.
+2. Review receipt discrepancies and measured stock/cash variances.
+3. Review expenses and deposits with evidence and maker/checker controls.
+4. Review station EOD submissions and follow up on missing/late records.
+5. Check scheduled prices and finance/report periods before exporting.
+6. Confirm user/station/master-data activity and remove obsolete access through authorised controls.
+
+### 16.3 Shop prototype review checklist
+
+1. Add a distinct item with a real photo, valid category, SKU and barcode.
+2. Find it by name/SKU and scan its barcode in Sell.
+3. Preview its full details and add it to the basket.
+4. Change quantity and verify that displayed totals remain legible.
+5. Complete a demonstration cash sale and verify the local stock reduction.
+6. Confirm the documented prototype limitations before approving a backend integration design.
+
+### Glossary
+
+| Term | Meaning |
+| --- | --- |
+| OMC | Oil Marketing Company; the tenant organisation. |
+| Station assignment | Active link between a user and the station where they work. |
+| Shift template | Reusable dates/days/times and pump-attendant coverage; not a shift session. |
+| Nozzle | Dispensing point linked to a pump, tank and fuel product. |
+| Dip | Physical tank measurement converted/entered using the configured reading mode. |
+| RTT | Return to tank; a recorded fuel return included in reconciliation. |
+| VCF | Volume correction factor used only when valid correction is configured. |
+| Variance | Difference between an actual measurement/collection and its expected basis. |
+| EOD | End-of-day station submission for a business date. |
+| Maker checker | Separation between the person creating a review-required record and the person deciding it. |
+| MoMo | Mobile-money collection through the configured provider. |
+| SKU | Stock keeping unit identifying a retail item. |
+| Barcode | Scannable retail item identifier; preserve the exact stored value. |
+| Reserved stock | Units already reserved and unavailable for new sale selection. |
+| Prototype | Demonstration UI/state that is not yet a durable production workflow. |
+
+### Source and maintenance note
+
+This edition was checked against the current frontend role routes/navigation, auth pages, station manager pages, OMC pages, system administration pages, shop inventory/POS components and backend attendant/payment routes. It intentionally identifies disabled menus, placeholders and sample-data workspaces. Update the manual after backend retail integration, delegated portal integration, permission changes or a deployment changes available controls. No production credentials or tenant-private records are included.

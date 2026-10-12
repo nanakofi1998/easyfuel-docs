@@ -1,0 +1,25 @@
+---
+title: "Troubleshooting"
+---
+
+| Symptom | Check and next action |
+| --- | --- |
+| Login is refused | Verify email/password, account status and assigned role. Pump attendants must use the mobile Ghana Card/attendant-ID flow. |
+| OTP did not arrive | Check the registered address and spam folder. Wait for the resend timer and request once. Ask support to review queued mail if delivery still fails. |
+| Reset link does not work | Use the latest link; an expired or used link needs a fresh administrator-issued link. |
+| Access Restricted | Confirm station/OMC assignment and permissions with the administrator. Do not attempt another role's URL. |
+| Station/pump/attendant missing | Check active status, station assignment and current template date/day/time. A pump with no active non-deleted nozzle is not eligible for shift selection. |
+| Product/payment option missing | Ask the OMC admin to check active master data and the station's selected products/payment methods. |
+| MoMo remains pending | Check the same transaction reference and customer's provider prompt. Escalate with reference/time; do not automatically create a second charge. |
+| Card/coupon rejected | Inspect state, balance, limit, expiry/redemption and remaining attempts. Ask an authorised admin to investigate. |
+| Capacity/request error | Compare requested/approved/dispatched quantities with the receiving tank and server's capacity policy. |
+| Physical stock missing or zero | Check whether an eligible physical reading exists for the tank and period. A system stock balance is not a substitute measurement. |
+| EOD reference or station never resolves | Refresh once, verify connectivity and active manager station assignment, then report the error. Do not submit another station's data. |
+| EOD says no PIN | Configure the six-digit EOD PIN in manager security settings and return to the draft. |
+| File upload fails | Check the specific form's allowed type/size. Tenant logo and retail item image limits differ. |
+| Retail barcode not found | Confirm the exact barcode/SKU, active item and scanner focus. Add the missing item only if it is genuinely a new item. |
+| Retail item/history disappeared | Prototype state resets on reload/remount and its history is sample data; this is not a durable retail ledger. |
+| Page keeps showing skeleton | Confirm network connectivity; image loading has a fallback. Capture page/date/filter context if it never resolves. |
+| Server unavailable message | Record page, action, time and business reference. System admin should inspect Error Logs. Do not paste credentials into a ticket. |
+
+For a support request, include the role, station name, page, operation, business date, record reference, displayed status and exact user-facing error. A screenshot can help if it excludes sensitive fields. Retain original transaction references during retries.

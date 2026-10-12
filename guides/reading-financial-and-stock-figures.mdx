@@ -1,0 +1,27 @@
+---
+title: "Reading financial and stock figures"
+---
+
+### 14.1 Payment sales and prices
+
+Successful transaction revenue is the amount from paid/completed financial records. Initiated/pending/failed payments are separate states. A cash posting can complete immediately; MoMo completion depends on the provider result.
+
+Average realised price per litre is the sum of qualifying transaction amounts divided by the sum of their litres, for the selected scope. It is a weighted average. It can differ from the latest configured price if the period includes multiple price versions. Example: 10 L sold at GHS 14.00 and 20 L at GHS 15.00 produce GHS 440.00 over 30 L, approximately GHS 14.667/L. Changing today's configured price must not rewrite those older sales.
+
+RTT affects stock/meter reconciliation. It does not automatically refund a paid transaction or change the original sale amount. Use the documented correction/refund process for a real financial change; do not reduce revenue simply to match a dip.
+
+### 14.2 Physical stock and variance
+
+Physical stock comes from a qualifying measurement, not just a stored tank balance. In the supported reconciliation flow, net observed fuel is dip volume minus water volume. A configured correction factor can then standardise that volume; if correction is not enabled, do not assume a temperature-adjusted quantity.
+
+Expected/book stock includes the opening basis, received deliveries and recorded movements, less measured sales/dispensing and with valid return-to-tank treatment. Variance is physical fuel minus expected fuel: negative indicates a shortage, positive a surplus, and zero a balanced quantity. In the current reading calculator, variance percentage uses book stock as its denominator, while the configured tolerance can be litres or percentage. A zero book-stock denominator is guarded by returning zero percentage; inspect the litre difference rather than interpreting that percentage as evidence of no loss.
+
+A delivery shortfall is a receipt variance. A daily dip difference is a stock variance. A transaction-versus-meter difference is a sales/meter variance. Their values may be investigated together but should not be indiscriminately summed when they describe the same discrepancy.
+
+Financial stock exposure applies the relevant recorded price basis to variance litres. Look at the source/date and price basis in the detailed register. A price-change windfall estimates stock value impact; it is not equivalent to leakage or verified realised profit.
+
+### 14.3 Collections and deposits
+
+Expected gross collections, sales-funded expense deductions, bank deposits and actual counted channels are separate components. Read the accounting breakdown rather than subtracting an expense from every KPI. Fuel cards/coupons are treated as credit-sale channels in relevant reports; they are not automatically physical cash received at the till.
+
+An approved expense, a recorded deposit, a submitted reconciliation and an approved EOD are different records. Approval of one must not be assumed to complete the others.

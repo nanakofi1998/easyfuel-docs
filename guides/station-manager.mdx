@@ -1,0 +1,142 @@
+---
+title: "Station manager"
+---
+
+Work only within the OMC and station assigned to your active manager account. Your station is supplied from station staff assignment; do not select another station to create operational records.
+
+### 7.1 Read the dashboard
+
+Monthly KPI cards show revenue and transaction counts; active attendants are counted from current station assignments rather than a monthly period. The weekly fuel-sales chart covers the previous week. Recent Transactions displays current-day station transactions with precise time and payment status. It is the live component; other dashboard analytics should not be assumed to stream continuously. Top-performing attendants are ranked for the month, prioritising transaction value.
+
+Open total revenue/transaction-count drawers to inspect payment-method composition. Open Active Attendants to inspect assigned active pump attendants. If the station or staff is missing, ask your OMC admin to check station assignment and account status.
+
+### 7.2 Create a shift template
+
+Open Shifts Management > Create Template.
+
+1. Enter the template name and verify the read-only station/manager.
+2. Select the operating days. None are selected by default.
+3. Select pumps for this template. None are selected by default. Only active station pumps with at least one active, non-deleted nozzle should be offered.
+4. Enter the minimum required attendant headcount, date range, start/end time, status and optional notes.
+5. Select Next: Assign Pumps.
+6. Add an active attendant assigned to your station, then select the pumps that person covers. One attendant can cover multiple pumps; each pump has one accountable attendant in the template.
+7. Repeat for other attendants. Reassign or remove a selection if coverage is wrong.
+8. Save Template and confirm the saved record in Manage Templates.
+
+An active template requires all selected pumps to be covered and the minimum distinct-attendant headcount to be met. Overlapping assignments can be rejected. A draft can be completed later. Use schedule times in the configured station/application timezone and confirm with the administrator if the browser time differs.
+
+### 7.3 Edit suspend or reactivate a template
+
+Open Manage Templates. Active templates appear as cards; the table includes other statuses such as Draft, Suspended and Expired.
+
+Use Edit Template on an eligible unexpired record. Change days, schedule, pumps, required headcount, notes and assignments through the two-step form. Template name and station remain read only. Removing or reassigning an attendant affects current coverage; it does not erase historical transactions. Save Changes and inspect the updated assignments.
+
+Use Suspend Template with a reason when a current template should no longer permit operation. Expired templates use Reactivate Template: provide valid dates/days/times and the confirmation requested. Past reactivation dates or already-elapsed end times are rejected. An attendant needs a valid active template matching the current day/date/time to access the selling context.
+
+### 7.4 Record tank and pump readings
+
+Open Sales > Meter Readings. Prepare actual physical measurements and the pump/nozzle counters. Do not enter a guessed measurement to clear a warning.
+
+1. Choose Reading Type and Reading Date. The page supports Opening, Closing, Shift Handover, Pre Delivery, Post Delivery, Rainfall Check and Manual Audit; corrections are handled through the edit/correction workflow.
+2. Shift Reference appears for shift-related readings. Select the eligible template rather than typing a free-text code.
+3. Delivery Reference appears for delivery readings. Choose the relevant dispatched/received delivery associated with the tank.
+4. Open the appropriate tank card to record its measurements. General opening/closing readings are station measurements rather than arbitrary shift references.
+5. Enter tank dip/physical volume using the configured input mode, water volume in litres and return-to-tank volume where applicable.
+6. Enter temperature only as the station policy requires. Record Only does not mean a correction factor was applied. Do not invent a VCF when measurement/correction is not configured.
+7. Enter the required pump/nozzle counter readings linked to this tank. Opening readings establish both stock and available counter baselines.
+8. Review the calculated preview, including expected/physical stock and variance, then submit once.
+9. Repeat as needed for other tank cards and verify the saved entries in Reading History.
+
+Water reduces net fuel volume. Record RTT only for a documented measured return using the designated field; do not enter the same return twice. A successful product receipt already updates operational tank stock. Pre/post-delivery readings provide physical evidence and must not be used to add the same delivery quantity again.
+
+In Reading History, filter by date range, status and product. Use View Reading for inspection or Edit Reading for an eligible correction. Supply a reason and evidence where requested. A reading is not deleted to conceal an error. The manager reviews the table status; checker decisions are handled at OMC level.
+
+Use Export CSV for the reading columns, or PDF/Print for the landscape reading report. Apply the desired period before exporting and keep the document as evidence of the recorded values, not proof that an unmeasured tank was physically checked.
+
+### 7.5 Request stock
+
+Open Stock Requisition. The server provides the request number and current request date.
+
+1. Select the receiving tank/product offered for this station.
+2. Read its capacity, current stock and available receiving space.
+3. Enter the requested litres within the allowed receiving space.
+4. Set a future/today ETA, priority and remarks.
+5. Submit and verify the request in Requisition History.
+
+Past ETA dates are disabled. Pending quantities and capacity policy can restrict an otherwise plausible request; use the server's message and contact the OMC reviewer rather than repeatedly increasing the quantity. Use View Requisition Details or Print Requisition for supporting evidence.
+
+### 7.6 Receive dispatched fuel
+
+Open Product Receipts and locate the relevant dispatched requisition/delivery.
+
+1. Select Receive Product from the eligible row menu.
+2. Verify request, station, receiving tank, product and dispatch/waybill details.
+3. Enter the actual quantity received and complete the displayed receiving details/evidence.
+4. Review shortage/overage and enter the required explanatory notes.
+5. Submit once, then confirm the receipt and remaining/requisition status.
+6. Check the tank's operational stock and record delivery dip evidence where the reading procedure requires it.
+
+Do not mark a dispatch received without measuring/confirming the actual receipt. A partial receipt is different from a fully received delivery. Use the row print action for a single receipt and report exports for a filtered history. Receipt difference concerns that delivery; daily stock variance concerns the complete stock reconciliation.
+
+### 7.7 Record expenses and banking deposits
+
+Open Sales and Cash Summary and select the appropriate business date; future dates are disabled.
+
+For an expense, select Add Expense. Choose an active OMC expense category, enter description, total amount and the optional amount taken directly from sales. Attach the receipt and add notes. Save once and confirm the expense status. A review-required expense stays pending; a no-approval category can auto-approve it with the recorded policy explanation.
+
+For a deposit, select Banking Deposit. Enter business date, deposit date/time, bank, optional branch, slip/reference number, amount, uploaded slip and notes. Review the upload preview/attachment and submit. Confirm the recorded slip and status. This is a separate record; do not replace the evidence with a reconciliation-only number.
+
+### 7.8 Reconcile cash and collections
+
+Select Cash Reconciliation from Sales and Cash Summary.
+
+1. Check the business date and expected collection breakdown.
+2. Count physical cash and compare banking deposits with the day's recorded slips.
+3. Enter actual POS, mobile-money, card, coupon and other displayed channel balances in their matching fields.
+4. Enter notes for a shortage, surplus or unresolved provider item.
+5. Save and inspect the new current reconciliation.
+
+Each submission is retained as history while one current/latest record supplies the current summary. Expected collections stay gross; expenses taken from sales appear as deductions. Match each amount to its destination and avoid counting banked cash again as physical cash. Credit/card/coupon entries are not automatically cash in the drawer.
+
+Read Cash Difference as balanced at zero, surplus when positive and shortage when negative. Inspect breakdowns before investigating. Use the date/product filters for Fuel Sales Summary and the main export control for that business day's summary.
+
+### 7.9 Transactions stock analysis and stock variance
+
+Open Transactions to inspect this station's transaction register. Search/filter by the offered criteria and use the 20-per-page carets. Open KPI drawers for payment-method count and value composition. Pending or failed rows do not count as successful revenue.
+
+Use Sales Analysis for product/date trends and detailed sales. Read average realised price separately from a historical/current configured price. Use Stock Analysis for movement over a period. Use Stock Variance to inspect physical-versus-expected stock and evidence. Supply a correction request/evidence through eligible actions when a record needs attention; OMC decisions are not the manager's approval task.
+
+If physical stock has no qualifying reading, do not substitute the tank's current system balance. Check which measurement/date the display is using and ask for a review if the source is missing.
+
+### 7.10 Generate reports
+
+Open Reports. Report Details offers Daily Sales, Shift Summary, Pump Activity and Fuel Consumption. Use View to open the table, then the offered CSV/PDF controls. Pump activity should be assessed using its sales and associated transaction details, not just the number of configured pumps.
+
+For Custom Reports:
+
+1. Select Meter Readings, Transactions, Pump Activity, Attendants or Expenses as the data source.
+2. Select the date range.
+3. Set the fields available for that source. Transaction reports include product, payment method and status. Attendant reports include assigned pump, shift template, minimum transaction count and minimum amount.
+4. Choose Table, Chart or Both and select an offered chart type where relevant.
+5. Generate Report, inspect the preview and export its data.
+6. Use Reset to clear the report-builder fields before another report.
+
+Transaction analysis compares transaction count with total amount, not merely paid count against all count. Operational fuel reports generally use product codes; customer receipts use product names. If a visible builder control does not alter results in your deployment, verify the output and report that control rather than treating it as an applied filter.
+
+### 7.11 Submit EOD
+
+EOD is the station's end-of-day submission to OMC review. It packages a business day's figures and manager checks; it is not the same as a retail till closure.
+
+1. Set your EOD PIN in Manager Settings > Notifications and Security before the first submission.
+2. Open EOD and choose the business date. Check station name and generated EOD reference.
+3. Wait for the draft, then inspect sales, collections, expenses, deposits, stock and variance sections.
+4. Use Refresh Draft after relevant source records change. Do not submit an outdated draft.
+5. Review system checks. Fix real blockers through the relevant operational page.
+6. Perform the manual checks yourself, toggle only completed checks and select Save Checklist.
+7. Select Review and Submit EOD. Add manager notes and, for a past business day, the required late-submission reason.
+8. Enter your six-digit EOD PIN and submit once.
+9. Confirm the submitted state/reference and review history. The OMC checks the submission afterwards.
+
+Shift templates do not require a shift-session closure to submit EOD. An unresolved OMC stock-variance review is a warning rather than an automatic manager blocker. Manual checklist answers do not override failed system checks. A PIN does not replace the need for accurate supporting records.
+
+If the screen reports No EOD PIN Set, open Manager Settings as directed, configure the PIN and return to EOD. For an interrupted/late day, submit the actual previous business date with a reason rather than mixing its data into today's submission. Current EOD Print / PDF uses the browser print dialog.

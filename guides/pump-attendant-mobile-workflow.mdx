@@ -1,0 +1,45 @@
+---
+title: "Pump attendant mobile workflow"
+---
+
+The pump attendant uses an external mobile app connected to the Easy Fuel attendant APIs. Screen labels can vary by mobile-app release; this section describes the verified backend workflow, not an invented mobile interface.
+
+### 8.1 Before selling and login
+
+Obtain your Ghana Card number and private six-digit attendant ID. Your account, station assignment and shift template must be active. The template must apply to the current date, weekday and time, and assigned pumps need usable active nozzles, tanks and products.
+
+Sign in through the mobile app using Ghana Card and attendant ID. Check the returned station, template and assigned pumps. One attendant may have several assigned pumps. If access is refused, contact the manager to review schedule/assignment rather than using another attendant's credentials.
+
+The attendant ID is a login secret, not an ordinary public staff reference. An OMC admin can resend it by SMS. Do not reveal it to a customer. Web login credentials and mobile attendant credentials are separate workflows.
+
+### 8.2 Common sale preparation
+
+1. Select the assigned pump/nozzle appropriate for the sale.
+2. Confirm the product name and the accepted payment method.
+3. Enter the requested amount for amount-based payments. The backend uses the effective price to derive litres.
+4. Review the customer/payment details and submit once.
+5. Keep the transaction reference until a final result is known.
+
+The app should retain one sale attempt's reference/idempotency identity when retrying an interrupted request. As a user, check existing status before initiating another charge. Do not manually calculate litres for an amount-based sale. The litre input is used only when the verified card type requires litres.
+
+### 8.3 Mobile money
+
+Enter the customer's wallet phone number and supported issuer. Perform the app's name enquiry and verify the returned account name with the customer. Laravel handles provider authentication; attendants do not manually obtain or paste People's Pay tokens.
+
+Enter the amount and initiate collection. The initial response means the payment was started; it is not proof the customer paid. Ask the customer to approve the provider prompt and wait while the app checks the stored transaction status. Only a successful paid result confirms receipt. If the customer claims to have paid while the app remains pending, check the same reference and escalate it; do not make another debit casually.
+
+For a failed payment, read the provider/user message and use an appropriate supported retry/new-sale flow after confirming the original result. A missing connection or timeout alone must not be interpreted as a completed payment or a final failure.
+
+### 8.4 Cash card and coupon sales
+
+For Cash, enter the amount received for the sale and submit through the cash action. A valid accepted cash posting completes directly; there is no provider approval prompt. Physically collect the cash before recording it.
+
+For Fuel Card, scan its QR or enter the card reference and validate it. The response identifies Currency or Litres input, status, balance and available attempts. Enter amount for a currency card or litres for a litre card. The backend validates balance/limit and applies the effective product price. Confirm the resulting amount/status. Card attempts are capped; inspect the remaining-attempt warning rather than repeatedly guessing. Administrative card attempt/reset policy is handled on the server.
+
+For Fuel Coupon, scan the QR or enter the coupon code and validate it. A QR verification token is part of the coupon verification link, not your attendant access token. Validate eligibility and follow the returned coupon data to submit the coupon sale. A successful redemption changes the coupon to redeemed once. Do not accept an already redeemed, voided or expired coupon, and do not assume a public verification page completes redemption.
+
+### 8.5 History and receipts
+
+Use today's transaction-history view to inspect amount, payment method, product name, date/time and status for your own sales. The successful-amount total excludes pending and failed payments.
+
+Open/download the available receipt after processing. Receipts are prepared for POS-style printing with OMC identity, transaction ID/reference, amount, status, date, product name and applicable customer/provider information. They do not show litres sold. A queued receipt may become available after processing; avoid creating another transaction merely to obtain a receipt.

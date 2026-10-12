@@ -1,0 +1,33 @@
+---
+title: "Common page controls"
+---
+
+### 4.1 Navigation and details
+
+Use the sidebar to open modules in the system admin, OMC admin and station manager portals. Expand a menu to see its submenus. In a collapsed sidebar, use its flyout menu. The shop and delegated role portals use header tabs instead of a sidebar. Breadcrumbs show the current page and, where supported, a link back to a parent page.
+
+Many KPI cards open a right-side drawer. Select a card to inspect its breakdown, charts and supporting records. Some cards already contain a breakdown and do not open a drawer. A drawer's close control or the area outside it returns you to the page.
+
+The vertical three-dot button in a row opens its action menu. Actions should match the record's current state: for example, an expired shift template needs reactivation, while an approved variance may need reopening rather than a second approval.
+
+### 4.2 Search filters and pagination
+
+1. Use Search to find a reference, name, code or another supported field.
+2. Open Filters for advanced choices such as dates, station, product, status or risk.
+3. Set the desired values and select the tick icon to Apply where provided.
+4. Use the reset icon to restore defaults. Changing a draft filter does not necessarily change the report until Apply is selected.
+5. Use left/right carets for paginated tables. Integrated registers commonly fetch 20 records per page; the page footer shows the actual total and page size.
+
+Read the displayed period before comparing figures. Today, last seven days, last month and all time are different scopes. The station manager dashboard deliberately uses different periods for its KPI cards, weekly sales chart and recent transactions.
+
+### 4.3 Charts exports and print
+
+Hover over a chart to view a tooltip. Use supported legend entries to show or hide a series. Where chart-type pills exist, choose an available line, column, stacked or doughnut display. The available types vary by report.
+
+Choose Export CSV for spreadsheet data or Export PDF for a formatted report. Apply the intended filters first. Print actions can print a single record or the displayed report; read the action name before proceeding. Fuel reports normally identify the OMC and may identify the station and generating user. Store exports according to your organisation's policy.
+
+Some print controls are demonstration controls; the role section identifies these. A browser's Print dialog and a backend-generated PDF are different outputs. For example, the current manager EOD Print / PDF control uses the browser print workflow.
+
+### 4.4 Loading and feedback
+
+Skeleton placeholders indicate that page content is loading. Button spinners indicate an action in progress. Avoid clicking a submit button repeatedly. Success, warning and error messages explain the outcome. On the shop portal, compact toasts last about seven seconds and repeated messages are suppressed.
